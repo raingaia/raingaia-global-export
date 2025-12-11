@@ -1,48 +1,36 @@
-// RAINGAIA • U.S. Global Export
-// Basic interactions: scroll reveal + smooth scroll
-
-document.addEventListener("DOMContentLoaded", () => {
-  // Reveal on scroll
-  const revealEls = document.querySelectorAll(".reveal");
-
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    revealEls.forEach(el => observer.observe(el));
-  } else {
-    // Fallback: just show
-    revealEls.forEach(el => el.classList.add("visible"));
-  }
-
-  // Smooth scroll for anchor links and header button
-  const scrollLinks = document.querySelectorAll('a[href^="#"], [data-scroll]');
-  scrollLinks.forEach(el => {
-    el.addEventListener("click", e => {
-      const targetId =
-        el.getAttribute("href")?.startsWith("#")
-          ? el.getAttribute("href")
-          : el.dataset.scroll;
-
-      if (targetId && targetId.startsWith("#")) {
-        const target = document.querySelector(targetId);
-        if (target) {
-          e.preventDefault();
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: "smooth"
-          });
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Navbar Rengi Değiştirme (Scroll Effect)
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            // Kaydırma başladığında navbar'ın görünümünü değiştir (örneğin daha az şeffaf yap)
+            navbar.style.backgroundColor = 'rgba(10, 17, 40, 0.9)';
+        } else {
+            // En üstteyken orijinal glassmorphism görünümüne dön
+            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
         }
-      }
     });
-  });
+
+    // 2. Reveal Animasyonu (Karta kaydıkça görünür olma)
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1 
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Animasyon tek seferlik olsun
+            }
+        });
+    }, observerOptions);
+
+    revealElements.forEach(el => {
+        el.classList.add('hidden'); // Başlangıçta gizle
+        observer.observe(el);
+    });
 });
