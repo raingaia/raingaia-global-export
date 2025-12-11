@@ -77,7 +77,17 @@ h1, h2, h3 {
 .clean-header nav a:hover {
     color: var(--color-gray);
 }
-
+/* Header Scroll Efekti için CSS Eklemesi */
+.clean-header {
+    /* ... (Mevcut stiller) ... */
+    transition: box-shadow 0.3s ease-out; /* Yumuşak geçiş */
+    border-bottom: 1px solid #E0E0E0; 
+}
+.clean-header.scrolled {
+    /* Kaydırma başladığında hafif bir gölge ekle */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); 
+    border-bottom: none; /* Alt çizgiyi kaldırarak gölgeyi vurgula */
+}
 
 /* ========================================================================= */
 /* 3. HERO SECTION (Merkez Görsel Odaklı) */
