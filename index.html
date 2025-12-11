@@ -145,41 +145,47 @@
                     </p>
                 </div>
 
-                <form id="requestForm" class="clean-form">
-    <div class="clean-row-2">
-        <div class="clean-input-group">
-            <input type="text" class="clean-input" placeholder=" " required>
-            <label class="clean-label">Full Legal Name</label>
-        </div>
-        <div class="clean-input-group">
-            <input type="text" class="clean-input" placeholder=" " required>
-            <label class="clean-label">Company / Organization</label>
-        </div>
-    </div>
+                <!-- FORM: Formspree entegrasyonlu -->
+                <form
+                  id="requestForm"
+                  class="clean-form"
+                  action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+                  method="POST"
+                >
+                    <div class="clean-row-2">
+                        <div class="clean-input-group">
+                            <input type="text" class="clean-input" name="fullName" placeholder=" " required>
+                            <label class="clean-label">Full Legal Name</label>
+                        </div>
+                        <div class="clean-input-group">
+                            <input type="text" class="clean-input" name="company" placeholder=" " required>
+                            <label class="clean-label">Company / Organization</label>
+                        </div>
+                    </div>
 
-    <div class="clean-input-group">
-        <input type="email" class="clean-input" placeholder=" " required>
-        <label class="clean-label">Business Email Address</label>
-    </div>
+                    <div class="clean-input-group">
+                        <input type="email" class="clean-input" name="email" placeholder=" " required>
+                        <label class="clean-label">Business Email Address</label>
+                    </div>
 
-    <div class="clean-input-group">
-        <input type="text" class="clean-input" placeholder=" " required>
-        <label class="clean-label">Country &amp; City</label>
-    </div>
+                    <div class="clean-input-group">
+                        <input type="text" class="clean-input" name="location" placeholder=" " required>
+                        <label class="clean-label">Country &amp; City</label>
+                    </div>
 
-    <div class="clean-input-group">
-        <input type="text" class="clean-input" placeholder=" " required>
-        <label class="clean-label">Requested Products / HS Codes</label>
-    </div>
+                    <div class="clean-input-group">
+                        <input type="text" class="clean-input" name="hsCodes" placeholder=" " required>
+                        <label class="clean-label">Requested Products / HS Codes</label>
+                    </div>
 
-    <button type="submit" class="btn-primary form-submit">
-        Submit for Review
-    </button>
+                    <!-- Formspree ayarları -->
+                    <input type="hidden" name="_subject" value="New RAINGAIA Export Request">
+                    <input type="hidden" name="_redirect" value="https://us.raingaia.com/thanks.html">
 
-    <!-- BUNU EKLE -->
-    <p id="formMessage" class="form-message" style="display:none;"></p>
-</form>
-
+                    <button type="submit" class="btn-primary form-submit">
+                        Submit for Review
+                    </button>
+                </form>
 
                 <p class="note">
                     Note: RAINGAIA currently focuses on general industrial, commercial and consumer goods.
@@ -193,7 +199,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <span class="footer-brand">RAINGAIA</span>
-                <p style="font-size: 0.9rem; line-height: 1.6;">
+                <p style="font-size: 0.9rem; line-height: 1.6%;">
                     U.S.-based export partner providing structured sourcing, documentation and logistics for international buyers.
                 </p>
             </div>
@@ -201,7 +207,6 @@
                 <h4>Company</h4>
                 <a href="#">About</a>
                 <a href="#">Services</a>
-                <!-- Contact artık mailto: -->
                 <a href="mailto:support@raingaia.com">Contact</a>
             </div>
             <div class="footer-col">
@@ -221,3 +226,4 @@
     <script src="assets/js/main.js"></script>
 </body>
 </html>
+
