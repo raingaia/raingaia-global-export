@@ -341,7 +341,6 @@ h1, h2, h3 {
     flex-basis: 70%; 
 }
 .footer-info-grid {
-    /* FOOTER BİLGİLERİ İÇİN GRID DÜZENİ */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
     gap: 30px;
