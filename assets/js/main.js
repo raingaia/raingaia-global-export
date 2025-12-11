@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Intersection Observer ayarları
     const observerOptions = {
-        root: null, // Görünüm alanı (viewport) baz alınır
+        root: null, 
         rootMargin: '0px',
-        threshold: 0.1 // Öğenin %10'u göründüğünde tetikle
+        threshold: 0.1 
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -38,10 +38,4 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.classList.remove('scrolled');
         }
     });
-    
-    // CSS'te şu sınıfın eklenmesi gerekir:
-    /* .clean-header.scrolled {
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); 
-    }
-    */
 });
