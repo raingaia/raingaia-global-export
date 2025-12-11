@@ -1,28 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Navbar Rengi Değiştirme (Scroll Effect)
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            // Kaydırma başladığında navbar'ın görünümünü değiştir (örneğin daha az şeffaf yap)
-            navbar.style.backgroundColor = 'rgba(10, 17, 40, 0.9)';
-        } else {
-            // En üstteyken orijinal glassmorphism görünümüne dön
-            navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-        }
-    });
-
-    // 2. Reveal Animasyonu (Karta kaydıkça görünür olma)
+    
+    // 1. GÖRÜNÜR OLMA ANİMASYONU (Reveal Animation)
+    // Öğelerin sayfaya kaydırıldıkça yumuşak bir şekilde yukarı doğru çıkmasını sağlar.
     const revealElements = document.querySelectorAll('.reveal');
 
+    // Intersection Observer ayarları
     const observerOptions = {
-        root: null,
+        root: null, // Görünüm alanı (viewport) baz alınır
         rootMargin: '0px',
-        threshold: 0.1 
+        threshold: 0.1 // Öğenin %10'u göründüğünde tetikle
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                // Eğer element görünüyorsa 'is-visible' sınıfını ekle
                 entry.target.classList.add('is-visible');
                 observer.unobserve(entry.target); // Animasyon tek seferlik olsun
             }
@@ -30,7 +22,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     revealElements.forEach(el => {
-        el.classList.add('hidden'); // Başlangıçta gizle
+        el.classList.add('hidden'); // CSS ile başlangıçta gizle
         observer.observe(el);
     });
+
+    // 2. HEADER/NAVİGASYON GÖLGE EFEKTİ
+    // Sayfa kaydırıldığında, navbar'a hafif bir gölge ekleyerek içeriği ayırır.
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 0) {
+            // Kaydırma başladığında, header'a 'scrolled' sınıfını ekle
+            navbar.classList.add('scrolled');
+        } else {
+            // En üstteyken 'scrolled' sınıfını kaldır
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // CSS'te şu sınıfın eklenmesi gerekir:
+    /* .clean-header.scrolled {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); 
+    }
+    */
 });
