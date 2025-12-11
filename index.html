@@ -137,16 +137,16 @@
         <!-- FORM / PORTAL -->
         <section id="form" class="form-section reveal">
             <div class="form-wrapper">
-                <div style="text-align: center; margin-bottom: 60px;">
+                <div class="form-intro">
                     <span class="eyebrow">Secure Portal</span>
-                    <h2 style="font-family: var(--font-serif); font-size: 3rem; margin: 10px 0;">Initiate Request</h2>
-                    <p style="color: var(--text-secondary);">
+                    <h2>Initiate Request</h2>
+                    <p>
                         Share your requirements. Your request is handled confidentially and reviewed by our export desk.
                     </p>
                 </div>
 
-                <form>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                <form id="requestForm" class="clean-form">
+                    <div class="clean-row-2">
                         <div class="clean-input-group">
                             <input type="text" class="clean-input" placeholder=" " required>
                             <label class="clean-label">Full Legal Name</label>
@@ -164,7 +164,7 @@
 
                     <div class="clean-input-group">
                         <input type="text" class="clean-input" placeholder=" " required>
-                        <label class="clean-label">Country & City</label>
+                        <label class="clean-label">Country &amp; City</label>
                     </div>
 
                     <div class="clean-input-group">
@@ -172,7 +172,7 @@
                         <label class="clean-label">Requested Products / HS Codes</label>
                     </div>
 
-                    <button type="button" class="btn-primary" style="width: 100%; margin-top: 20px;">
+                    <button type="submit" class="btn-primary form-submit">
                         Submit for Review
                     </button>
                 </form>
@@ -197,12 +197,13 @@
                 <h4>Company</h4>
                 <a href="#">About</a>
                 <a href="#">Services</a>
-                <a href="#">Contact</a>
+                <!-- Contact artık mailto: -->
+                <a href="mailto:support@raingaia.com">Contact</a>
             </div>
             <div class="footer-col">
                 <h4>Exports</h4>
-                <a href="#">Machinery & Equipment</a>
-                <a href="#">Technology & Components</a>
+                <a href="#">Machinery &amp; Equipment</a>
+                <a href="#">Technology &amp; Components</a>
                 <a href="#">Consumer Goods</a>
             </div>
             <div class="footer-col">
