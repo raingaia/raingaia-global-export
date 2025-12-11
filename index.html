@@ -80,59 +80,66 @@
             </div>
         </div>
 
-        <!-- STRATEGIC INSIGHTS / EXPORT PROCESS / INDUSTRIES -->
-        <section class="editorial-section" id="process">
-            <div class="container reveal">
-                <div class="section-header">
-                    <h2>Strategic Insights.</h2>
-                    <p>
-                        Concise notes on U.S. export practice, logistics decisions and risk control for cross-border trade.
-                    </p>
-                </div>
+     <!-- FORM / PORTAL -->
+<section id="form" class="form-section reveal">
+  <div class="form-wrapper">
+    <div class="form-intro">
+      <span class="eyebrow">Secure Portal</span>
+      <h2>Initiate Request</h2>
+      <p>
+        Share your requirements. Your request is handled confidentially and reviewed by our export desk.
+      </p>
+    </div>
 
-                <div class="editorial-grid">
-                    <article class="article-card">
-                        <span class="article-meta">U.S. Export • 2025 Guide</span>
-                        <h3>Planning Your First Purchase From a U.S. Supplier.</h3>
-                        <p>
-                            Key questions buyers should answer before placing an order: specifications, Incoterms,
-                            payment structure and handling of post-delivery support.
-                        </p>
-                        <span class="read-more">Read Analysis</span>
-                    </article>
+    <!-- FormSubmit entegrasyonlu form -->
+    <form
+      id="requestForm"
+      class="clean-form"
+      action="https://formsubmit.co/raingaia@outlook.com"
+      method="POST"
+    >
+      <div class="clean-row-2">
+        <div class="clean-input-group">
+          <input type="text" class="clean-input" name="fullName" placeholder=" " required>
+          <label class="clean-label">Full Legal Name</label>
+        </div>
+        <div class="clean-input-group">
+          <input type="text" class="clean-input" name="company" placeholder=" " required>
+          <label class="clean-label">Company / Organization</label>
+        </div>
+      </div>
 
-                    <article class="article-card" id="industries">
-                        <span class="article-meta">Trade • Investment</span>
-                        <h3>Aligning Long-Term Supply With Stable Partnerships.</h3>
-                        <p>
-                            How recurring orders, clear contracts and trusted intermediaries can create predictable
-                            cost structures in high-demand markets.
-                        </p>
-                        <span class="read-more">Read Analysis</span>
-                    </article>
+      <div class="clean-input-group">
+        <input type="email" class="clean-input" name="email" placeholder=" " required>
+        <label class="clean-label">Business Email Address</label>
+      </div>
 
-                    <article class="article-card">
-                        <span class="article-meta">Logistics • Strategy</span>
-                        <h3>Choosing the Right Mode: Air, Ocean or Express.</h3>
-                        <p>
-                            Balancing lead time, shipment volume and total landed cost when selecting transport options
-                            for international orders.
-                        </p>
-                        <span class="read-more">Read Analysis</span>
-                    </article>
+      <div class="clean-input-group">
+        <input type="text" class="clean-input" name="location" placeholder=" " required>
+        <label class="clean-label">Country &amp; City</label>
+      </div>
 
-                    <article class="article-card">
-                        <span class="article-meta">Compliance • Operations</span>
-                        <h3>Building a Clean Export File to Avoid Delays.</h3>
-                        <p>
-                            Why accurate HS codes, quantities and values are essential for customs clearance and how
-                            buyers can prepare information in advance.
-                        </p>
-                        <span class="read-more">Read Analysis</span>
-                    </article>
-                </div>
-            </div>
-        </section>
+      <div class="clean-input-group">
+        <input type="text" class="clean-input" name="hsCodes" placeholder=" " required>
+        <label class="clean-label">Requested Products / HS Codes</label>
+      </div>
+
+      <!-- FormSubmit ayarları -->
+      <input type="hidden" name="_subject" value="New RAINGAIA Export Request">
+      <input type="hidden" name="_next" value="https://us.raingaia.com/thanks.html">
+      <input type="hidden" name="_captcha" value="false">
+
+      <button type="submit" class="btn-primary form-submit">
+        Submit for Review
+      </button>
+    </form>
+
+    <p class="note">
+      Note: RAINGAIA currently focuses on general industrial, commercial and consumer goods.
+      Regulated medical products and prescription medicines are not offered at this stage.
+    </p>
+  </div>
+</section>
 
         <!-- FORM / PORTAL -->
         <section id="form" class="form-section reveal">
