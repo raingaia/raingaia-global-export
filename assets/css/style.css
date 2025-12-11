@@ -1,17 +1,25 @@
-/* TEMEL AYARLAR */
+/* ========================================================================= */
+/* 1. KÖK DEĞİŞKENLER VE TEMEL AYARLAR (Yüksek Kontrastlı Minimalist) */
+/* ========================================================================= */
 :root {
-    --color-navy: #0A1128; /* Koyu Mavi */
-    --color-crystal: #F4F7FC; /* Kristal Beyaz */
-    --color-neon: #00FFFF; /* Neon Mavi/Cyan Vurgu */
-    --color-text-primary: #FFFFFF;
-    --color-text-secondary: #C0C0C0;
+    --color-white: #FFFFFF;
+    --color-off-white: #F9F9F9; /* Hafif Gri/Beyaz Arka Plan */
+    --color-black: #111111; /* Koyu Siyah Metin */
+    --color-gray: #555555; /* İkincil Metin Rengi */
+    --color-accent: #000000; /* Aksiyonlar için Siyah/Koyu Vurgu */
+    
+    /* Premium Fontlar: Playfair Display serif lüks hissiyat, Inter temizlik için */
+    --font-serif: 'Playfair Display', serif;
     --font-sans: 'Inter', sans-serif;
-    --font-serif: 'Rajdhani', sans-serif;
+    
+    --spacing-large: 80px;
+    --spacing-medium: 40px;
 }
 
-body {
-    background-color: var(--color-navy);
-    color: var(--color-text-primary);
+/* Sayfa Gövdesi */
+.minimalist-body {
+    background-color: var(--color-off-white);
+    color: var(--color-black);
     font-family: var(--font-sans);
     margin: 0;
     padding: 0;
@@ -20,135 +28,268 @@ body {
     overflow-x: hidden;
 }
 
-/* DEGRADE ARKA PLAN (Navy Blue -> Crystal White) */
-.fluid-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    background: linear-gradient(180deg, var(--color-navy) 0%, #15264a 30%, var(--color-crystal) 100%);
-    opacity: 0.95; /* Hafif saydamlık efekti */
+/* Konteyner ve Genel Yapı */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* BAŞLIKLAR */
+/* Başlıklar */
 h1, h2, h3 {
     font-family: var(--font-serif);
-    font-weight: 700;
+    font-weight: 500; /* Daha sade bir görünüm için ağırlık düşürüldü */
+    color: var(--color-black);
+    margin-top: 0;
 }
+.large-text { font-size: 2.5rem; }
+.secondary-text { color: var(--color-gray); font-size: 1rem; }
+.playfair-font { font-family: var(--font-serif); }
 
-/* HERO SECTION VE GLASSMOPHISM */
-.hero {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    z-index: 1;
-    overflow: hidden;
-}
 
-.glass-nav {
-    /* Glassmorphism Efekti: Bulanıklık ve Yarı Saydamlık */
-    background: rgba(255, 255, 255, 0.05); 
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+/* ========================================================================= */
+/* 2. HEADER ve NAVİGASYON (AKQA stili) */
+/* ========================================================================= */
+.clean-header {
     position: fixed;
     width: 100%;
-    top: 0;
-    left: 0;
+    background-color: var(--color-white);
+    padding: 25px var(--spacing-medium);
     z-index: 1000;
-    padding: 15px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #E0E0E0; /* İnce, Keskin Çizgi */
+}
+.clean-header .brand { 
+    font-size: 1.2rem; 
+    font-weight: 600; 
+    letter-spacing: 2px;
+}
+.clean-header nav a {
+    color: var(--color-black);
+    margin-left: var(--spacing-medium);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.clean-header nav a:hover {
+    color: var(--color-gray);
 }
 
-/* NAVBAR DİĞER STİLLERİ (Basitlik için kısa tutuldu) */
-.brand { font-size: 1.5rem; font-weight: 700; }
-nav a { color: var(--color-text-primary); margin-left: 30px; text-decoration: none; transition: color 0.3s; }
-nav a:hover { color: var(--color-neon); }
 
-/* NEON VURGULAR */
-.neon-highlight {
-    color: var(--color-neon);
-    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.3);
+/* ========================================================================= */
+/* 3. HERO SECTION (Merkez Görsel Odaklı) */
+/* ========================================================================= */
+.minimalist-hero {
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px; /* Header boşluğu */
+}
+.product-showcase {
+    /* Montblanc örneğindeki merkezi görsel alanı simüle eder */
+    max-width: 600px;
+    width: 90%;
+    height: 60vh; /* Yüksek dikey alan */
+    background-color: #E8E8E8; /* Görsel yer tutucu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0;
+    border: 1px solid #D0D0D0; /* Temiz çerçeve */
+}
+.showcase-caption {
+    text-align: center;
+    padding: 20px;
+}
+.showcase-caption p {
+    font-size: 2.5rem;
+    line-height: 1.2;
 }
 
-/* KARTLAR (MIRAI/GLASS CARDS) */
-.grid-3 {
+
+/* ========================================================================= */
+/* 4. HİZMETLER VE KARTLAR (Sade ve Kontrastlı) */
+/* ========================================================================= */
+.core-services-section {
+    padding: var(--spacing-large) 20px;
+}
+.minimalist-header {
+    text-align: center;
+    margin-bottom: var(--spacing-large);
+    padding-bottom: var(--spacing-medium);
+    border-bottom: 1px solid #D0D0D0; /* Başlık ayrımı */
+}
+.minimalist-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    margin-top: 60px;
+    gap: 30px;
 }
-.mirai-card {
-    /* Glassmorphism Efekti */
-    background: rgba(255, 255, 255, 0.05); 
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(0, 255, 255, 0.2); /* Neon kenarlık */
-    border-radius: 15px;
+.minimalist-card {
+    background-color: var(--color-white);
     padding: 30px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #EAEAEA;
+    transition: box-shadow 0.3s, border-color 0.3s;
 }
-.mirai-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4); /* Neon parlama */
+.minimalist-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Hafif gölge */
+    border-color: var(--color-gray);
 }
 .card-icon {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 15px;
     display: block;
+    color: var(--color-accent);
+}
+.minimalist-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
 }
 
-/* BUTONLAR */
+
+/* ========================================================================= */
+/* 5. FORM VE BUTONLAR */
+/* ========================================================================= */
+.clean-section {
+    padding: var(--spacing-large) 20px;
+    background-color: var(--color-off-white);
+    border-top: 1px solid #E0E0E0;
+}
+.wide-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+}
+.form-header-minimal {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.clean-input-group {
+    margin-bottom: 30px;
+    position: relative;
+}
+.clean-input {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid var(--color-black); /* Alt çizgi vurgusu */
+    background-color: transparent;
+    color: var(--color-black);
+    font-size: 1rem;
+}
+.clean-input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--color-accent);
+}
+.clean-label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color: var(--color-gray);
+    pointer-events: none;
+    transition: all 0.2s ease-out;
+}
+.clean-input:focus + .clean-label,
+.clean-input:not(:placeholder-shown) + .clean-label {
+    top: -10px;
+    font-size: 0.75rem;
+    color: var(--color-black);
+}
+
 .btn-primary {
-    padding: 12px 30px;
-    border-radius: 5px;
+    padding: 15px 30px;
+    border-radius: 0; /* Keskin köşeler */
     text-decoration: none;
     font-weight: 600;
     display: inline-block;
-    transition: background 0.3s;
-    border: none;
+    transition: background 0.3s, color 0.3s;
+    cursor: pointer;
 }
-.neon-filled-btn {
-    background-color: var(--color-neon);
-    color: var(--color-navy);
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
-}
-.neon-filled-btn:hover {
-    background-color: #00E0E0;
-}
-.neon-border-btn {
+.black-outline-btn {
     background: transparent;
-    color: var(--color-neon);
-    border: 2px solid var(--color-neon);
+    color: var(--color-black);
+    border: 1px solid var(--color-black);
+    font-size: 0.95rem;
 }
-.neon-border-btn:hover {
-    background-color: var(--color-neon);
-    color: var(--color-navy);
+.black-outline-btn:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
 }
 
-/* FOOTER */
-.dark-footer-bg {
-    background-color: var(--color-navy);
+
+/* ========================================================================= */
+/* 6. FOOTER VE TELİF HAKKI (Sade ve Okunabilir) */
+/* ========================================================================= */
+.clean-footer {
+    background-color: var(--color-white);
     padding: 60px 5%;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid #E0E0E0;
 }
-.footer-grid {
+.minimalist-footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 2fr;
-    gap: 40px;
+    grid-template-columns: 2fr 1.5fr 1.5fr 2fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px;
 }
-.footer-col a {
-    display: block;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    margin-bottom: 8px;
+.clean-footer h4, .clean-footer p {
+    color: var(--color-black);
+    margin-top: 0;
+    margin-bottom: 5px;
     font-size: 0.9rem;
 }
+.clean-footer .footer-link {
+    display: block;
+    color: var(--color-gray);
+    text-decoration: none;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+.clean-footer .footer-link:hover {
+    color: var(--color-black);
+}
+.right-aligned {
+    text-align: right;
+}
 
-/* ... Diğer CSS stilleri (fontlar, responsive, vb.) buraya eklenecektir. */
+/* Çerez Bildirimi */
+.cookie-notice-minimal {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-top: 1px solid #E0E0E0;
+    font-size: 0.85rem;
+}
+.minimal-cookie-btn {
+    background: transparent;
+    border: 1px solid var(--color-black);
+    color: var(--color-black);
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.minimal-cookie-btn:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+}
+
+
+/* ========================================================================= */
+/* 7. JS Animasyon Sınıfları */
+/* ========================================================================= */
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 0.8s ease-out;
+}
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
