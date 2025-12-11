@@ -1,5 +1,5 @@
 /* ========================================================================= */
-/* 1. KÖK DEĞİŞKENLER VE TEMEL AYARLAR */
+/* 1. KÖK DEĞİŞKENLER VE TEMEL AYARLAR (NİHAİ RENK PALETİ) */
 /* ========================================================================= */
 :root {
     /* Renkler: Yumuşak Siyah/Beyaz ve Altın Vurgu */
@@ -63,7 +63,7 @@ h1, h2, h3 {
 
 
 /* ========================================================================= */
-/* 2. HEADER ve NAVİGASYON */
+/* 2. HEADER ve NAVİGASYON (PREMİUM STİL) */
 /* ========================================================================= */
 .clean-header {
     position: fixed;
@@ -75,12 +75,14 @@ h1, h2, h3 {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #E0E0E0; 
-    transition: box-shadow 0.3s ease-out, border-bottom 0.3s ease-out; /* JS için geçiş */
+    transition: box-shadow 0.3s ease-out, border-bottom 0.3s ease-out; 
 }
 .clean-header .brand { 
-    font-size: 1.4rem; 
-    font-weight: 700; 
-    letter-spacing: 1px;
+    /* PREMIUM LOGO STİLİ */
+    font-size: 1.5rem; 
+    font-weight: 800; 
+    letter-spacing: 0.5px; 
+    font-family: var(--font-sans); 
 }
 .clean-header nav a {
     color: var(--color-black);
@@ -91,8 +93,23 @@ h1, h2, h3 {
     transition: color 0.3s;
 }
 .clean-header nav a:hover {
-    color: var(--color-accent); /* Altın Vurgu */
+    color: var(--color-accent); 
 }
+
+/* START APPLICATION Butonu için Çerçeveyi Kaldır (Sadece Metin Linki) */
+.clean-header .nav-action-link {
+    background: transparent;
+    color: var(--color-black);
+    text-decoration: none;
+    padding: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.clean-header .nav-action-link:hover {
+    color: var(--color-accent);
+}
+
 /* JS ile tetiklenen kaydırma efekti */
 .clean-header.scrolled {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); 
@@ -104,7 +121,7 @@ h1, h2, h3 {
 /* 3. HERO SECTION */
 /* ========================================================================= */
 .minimalist-hero {
-    min-height: 80vh; /* Yüksek dikey boşluk */
+    min-height: 80vh; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -138,7 +155,7 @@ h1, h2, h3 {
 }
 .minimalist-card:hover {
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08); 
-    border-color: var(--color-black); /* Hover'da Siyah Çerçeve Vurgusu */
+    border-color: var(--color-black); 
 }
 .card-icon {
     font-size: 2rem;
@@ -300,7 +317,7 @@ h1, h2, h3 {
 
 
 /* ========================================================================= */
-/* 7. FOOTER VE TELİF HAKKI (Siyah Tonlu, Şık) */
+/* 7. FOOTER VE TELİF HAKKI (NİHAİ DÜZEN) */
 /* ========================================================================= */
 .clean-footer {
     background-color: var(--color-black); /* Kömür Siyahı */
@@ -310,26 +327,23 @@ h1, h2, h3 {
 .footer-content-minimal {
     max-width: 1280px;
     margin: 0 auto;
-    display: flex;
+    /* FOOTER İÇERİĞİ FLEX YAPISI */
+    display: flex; 
     justify-content: space-between;
     align-items: flex-start;
     padding-bottom: 40px;
 }
+
 .footer-left {
-    flex-basis: 30%;
+    flex-basis: 25%; 
 }
 .footer-right {
-    flex-basis: 60%;
-    text-align: right;
-}
-.footer-brand {
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+    flex-basis: 70%; 
 }
 .footer-info-grid {
+    /* FOOTER BİLGİLERİ İÇİN GRID DÜZENİ */
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr; 
     gap: 30px;
     text-align: left;
     margin-left: auto;
@@ -342,7 +356,7 @@ h1, h2, h3 {
 }
 .footer-info-grid .secondary-text {
     font-weight: 400;
-    color: #AAAAAA; /* Açık gri metin */
+    color: #AAAAAA; 
 }
 .footer-link {
     display: block;
@@ -355,12 +369,12 @@ h1, h2, h3 {
 .footer-link:hover {
     color: var(--color-accent); /* Altın vurgu */
 }
+/* Sağ Hizalama Linkleri */
 .right-align-links {
     text-align: right;
 }
-.right-align-links .footer-link {
-    display: inline;
-    margin-left: 20px;
+.right-align-links a {
+    display: block;
 }
 
 /* Çerez Bildirimi */
@@ -402,5 +416,3 @@ h1, h2, h3 {
     opacity: 1;
     transform: translateY(0);
 }
-
-/* responsive düzen için buraya medya sorguları eklenebilir. */
