@@ -110,6 +110,24 @@
     .product-card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
     .product-tag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;padding:4px 8px;color:var(--ink-3);border:1px solid var(--line);letter-spacing:.03em;text-transform:uppercase}
 
+    /* BIG BLACK STATEMENT BANNERS */
+    .banner{background:var(--bg-ink);color:#fff;padding:120px 0}
+    .banner h2{font-size:clamp(40px,6.6vw,104px);font-weight:800;line-height:0.98;letter-spacing:-.03em;text-transform:uppercase;margin:0;max-width:1000px}
+    .banner .dim{color:rgba(255,255,255,.32)}
+    .banner p{margin:32px 0 0;font-size:17px;color:rgba(255,255,255,.55);max-width:560px;line-height:1.75}
+    .banner .hero-actions{margin-top:36px}
+    .banner .btn-primary{background:#fff;color:var(--ink);border-color:#fff}
+    .banner .btn-primary:hover{background:transparent;color:#fff}
+    .banner .btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+    .banner .btn-outline:hover{background:#fff;color:var(--ink)}
+
+    /* TRUST / SUBSTANCE GRID */
+    .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .trust-item{background:#fff;padding:36px 32px}
+    .trust-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-4);margin-bottom:16px}
+    .trust-item h3{margin:0 0 12px;font-size:19px;font-weight:800;letter-spacing:-.01em}
+    .trust-item p{margin:0;font-size:14px;line-height:1.75;color:var(--ink-2)}
+
     /* METHOD LIST */
     .method-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.12)}
     .method-list > .method-item{min-width:0}
@@ -137,6 +155,8 @@
       .products-grid{grid-template-columns:1fr}
       .product-card{border-right:none;border-bottom:1px solid var(--line)}
       .product-card:last-child{border-bottom:none}
+      .trust-grid{grid-template-columns:1fr}
+      .trust-item{border-bottom:1px solid var(--line)}
       .method-list{grid-template-columns:1fr}
       .method-item{padding:28px 0}
       .section-head{grid-template-columns:1fr;gap:12px}
@@ -261,6 +281,46 @@
       </div>
     </section>
 
+    <section class="banner">
+      <div class="container">
+        <h2>No signatures.<br>No thresholds.<br><span class="dim">No black boxes.</span></h2>
+        <p>Every RAINGAIA product makes its decision the same way: a learned baseline for
+          every source, fused evidence across independent channels, and a permanent record of
+          why — not a maintained rule list, not a fixed cutoff, not an opaque score.</p>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-num">—</div>
+          <h2>Real claims, not marketing copy</h2>
+          <p>Three concrete things you can verify yourself, not just take our word for.</p>
+        </div>
+        <div class="trust-grid">
+          <div class="trust-item">
+            <div class="trust-num">A</div>
+            <h3>Source-relative, not one-size-fits-all</h3>
+            <p>Every source — a host, a sensor point, a physiological channel — gets its own
+              learned baseline. Nothing is scored against a single global "normal."</p>
+          </div>
+          <div class="trust-item">
+            <div class="trust-num">B</div>
+            <h3>Published, not proprietary</h3>
+            <p>Raingaia Seismos's stiffness-loss estimates are grounded in published structural
+              engineering research (Worden et al. 2012; Salawu 1997) — methods you can look up
+              and evaluate independently, not a black-box model.</p>
+          </div>
+          <div class="trust-item">
+            <div class="trust-num">C</div>
+            <h3>Isolated, not shared</h3>
+            <p>Each Raingaia Network customer is provisioned their own analysis engine and
+              database. Traffic and findings are never pooled into a shared multi-tenant store.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section ink">
       <div class="container">
         <div class="section-head">
@@ -305,15 +365,14 @@
       </div>
     </section>
 
-    <section id="contact" class="section alt">
+    <section id="contact" class="banner">
       <div class="container">
-        <div class="section-head">
-          <div class="section-num">03</div>
-          <h2>Get in touch</h2>
-          <p>Questions about a specific product, a partnership, or the underlying methodology —
-            reach out directly.</p>
+        <h2>Ready to see<br><span class="dim">the evidence?</span></h2>
+        <p>Questions about a specific product, a partnership, or the underlying methodology —
+          reach out directly.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:raingaia@outlook.com">Email raingaia@outlook.com</a>
         </div>
-        <a class="btn btn-primary" href="mailto:raingaia@outlook.com">Email raingaia@outlook.com</a>
       </div>
     </section>
 
