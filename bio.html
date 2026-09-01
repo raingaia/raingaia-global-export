@@ -81,6 +81,17 @@
     article li strong{color:var(--ink)}
     .example{background:var(--bg-alt);border:1px solid var(--line);border-left:3px solid var(--ink);padding:20px 24px;margin:24px 0;font-size:14.5px;line-height:1.75;color:var(--ink-2)}
     .example .label{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-4);margin-bottom:8px}
+    .banner{background:var(--bg-ink);color:#fff;padding:100px 0}
+    .banner h2{font-weight:800;font-size:clamp(32px,5.6vw,76px);line-height:1;letter-spacing:-.03em;text-transform:uppercase;margin:0;max-width:900px;border:none;padding:0}
+    .banner .dim{color:rgba(255,255,255,.32)}
+    .banner p{margin:28px 0 0;font-size:16px;color:rgba(255,255,255,.55);max-width:560px;line-height:1.75}
+    .pipeline-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin:24px 0 32px}
+    .pipeline-item{background:#fff;padding:20px 26px;display:grid;grid-template-columns:32px 1fr;gap:16px;align-items:start}
+    .pipeline-num{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-4);font-weight:600}
+    .pipeline-item h3{margin:0 0 6px;font-size:15.5px;font-weight:800}
+    .pipeline-item p{margin:0;font-size:14px;line-height:1.7;color:var(--ink-2)}
+    .faq-mini h3{margin:28px 0 8px;font-size:16.5px;font-weight:800}
+    .faq-mini p{margin:0 0 4px}
 
     .cta-band{background:var(--bg-ink);color:#fff;padding:56px;text-align:center;margin:64px 0 0}
     .cta-band h2{margin:0 0 12px;font-size:26px;font-weight:700;border:none;padding:0}
@@ -166,23 +177,94 @@
         electrical — grounded in Nernst/GHK electrochemistry, surfacing early membrane-instability
         deviation before it would show up in a single raw waveform reading.</p>
 
-      <h2>How it works</h2>
-      <p>A five-stage analysis pipeline, built for population-scale throughput from day one rather
-        than retrofitted onto a single-patient setup, fuses evidence across all ten domains using
-        the same confidence-gated evidence-fusion approach described in our
-        <a href="/approach.html" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--ink)">technical approach</a>. The result is a single risk index with the
-        underlying evidence attached — not an opaque score.</p>
+      <h2>A five-stage analysis pipeline</h2>
+      <p>Built for population-scale throughput from day one, not retrofitted onto a
+        single-patient prototype. Each stage has one job, so a fault in one never silently
+        corrupts another patient's result:</p>
+      <div class="pipeline-list">
+        <div class="pipeline-item">
+          <div class="pipeline-num">01</div>
+          <div>
+            <h3>Signal Intake</h3>
+            <p>Accepts data from the monitoring hardware you already have.</p>
+          </div>
+        </div>
+        <div class="pipeline-item">
+          <div class="pipeline-num">02</div>
+          <div>
+            <h3>Real-Time Processing</h3>
+            <p>Continuous signal processing, statistics, and compression.</p>
+          </div>
+        </div>
+        <div class="pipeline-item">
+          <div class="pipeline-num">03</div>
+          <div>
+            <h3>Orchestration</h3>
+            <p>Routing and fault isolation — one patient's data never affects another's.</p>
+          </div>
+        </div>
+        <div class="pipeline-item">
+          <div class="pipeline-num">04</div>
+          <div>
+            <h3>Biophysical Analysis</h3>
+            <p>The eleven-layer analysis engine — raw signal to a fused index.</p>
+          </div>
+        </div>
+        <div class="pipeline-item">
+          <div class="pipeline-num">05</div>
+          <div>
+            <h3>Risk Fusion</h3>
+            <p>Confidence- and conflict-gated fusion into one reported result.</p>
+          </div>
+        </div>
+      </div>
+
+      <h2>An eleven-layer verdict engine</h2>
+      <p>Signal passes through eleven independent analysis layers — from raw geometry through to
+        higher-order pattern and trajectory — reconciled into a single coherence-scored verdict
+        rather than one model's single guess. This is the same discipline described in our
+        <a href="/approach.html" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--ink)">technical approach</a>: fuse independent evidence, don't trust one signal alone.</p>
 
       <h2>Hardware-independent by design</h2>
-      <p>Raingaia Bio integrates behind the monitoring hardware a facility already runs, rather
-        than requiring a hardware swap. This is informational analysis, positioned to sit behind
-        existing infrastructure rather than replace it.</p>
+      <p>Raingaia Bio accepts data from any compliant sensor — you keep your existing device
+        relationships and hardware vendor, we supply the analysis layer on top rather than
+        requiring a hardware swap. Readings are queued and retried automatically if connectivity
+        drops in the field, so nothing is lost between the sensor and the platform. Every partner
+        integration is issued a scoped credential and a status check, so a quiet sensor is
+        distinguishable from a disconnected one.</p>
 
       <div class="example">
         <div class="label">Auditability</div>
         Every analysis is permanently logged in a tamper-evident audit trail — evidence a
         clinician, an insurer, or a downstream reviewer can trust, not just a number on a
         dashboard the operator already believed.
+      </div>
+
+    </article>
+
+    <section class="banner">
+      <div class="container">
+        <h2>Ten signals.<br><span class="dim">One coherent verdict.</span></h2>
+        <p>A single noisy channel never gets to drive the reported index alone — that's the
+          entire point of reading ten independent physiological domains instead of one.</p>
+      </div>
+    </section>
+
+    <article class="container read">
+      <h2 style="margin-top:56px">Questions we get</h2>
+      <div class="faq-mini">
+        <h3>Do we need to replace our existing monitoring hardware?</h3>
+        <p>No — Raingaia Bio is designed to integrate behind the hardware you already run and
+          already have vendor relationships for. It supplies the analysis layer, not a hardware
+          replacement.</p>
+        <h3>What happens if a sensor loses connectivity?</h3>
+        <p>Readings are queued and retried automatically, and a scoped status check lets you
+          distinguish a quiet sensor from a genuinely disconnected one — nothing silently
+          disappears.</p>
+        <h3>Is this a diagnostic device?</h3>
+        <p>This is hardware-independent, informational analysis layered behind monitoring
+          hardware — not a standalone diagnostic device. Talk to us directly about your specific
+          use case and regulatory context.</p>
       </div>
 
       <h2>Who it's for</h2>

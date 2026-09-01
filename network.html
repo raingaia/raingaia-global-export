@@ -85,6 +85,12 @@
     .ev-table{width:100%;border-collapse:collapse;margin:20px 0 32px;font-size:14px}
     .ev-table th,.ev-table td{border:1px solid var(--line);padding:11px 13px;text-align:left}
     .ev-table th{background:var(--bg-alt);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+    .banner{background:var(--bg-ink);color:#fff;padding:100px 0;margin:0 0 0}
+    .banner h2{font-weight:800;font-size:clamp(32px,5.6vw,76px);line-height:1;letter-spacing:-.03em;text-transform:uppercase;margin:0;max-width:900px;border:none;padding:0}
+    .banner .dim{color:rgba(255,255,255,.32)}
+    .banner p{margin:28px 0 0;font-size:16px;color:rgba(255,255,255,.55);max-width:560px;line-height:1.75}
+    .faq-mini h3{margin:28px 0 8px;font-size:16.5px;font-weight:800}
+    .faq-mini p{margin:0 0 4px}
 
     .cta-band{background:var(--bg-ink);color:#fff;padding:56px;text-align:center;margin:64px 0 0}
     .cta-band h2{margin:0 0 12px;font-size:26px;font-weight:700;border:none;padding:0}
@@ -205,11 +211,82 @@
         <span class="verdict">Verdict: Critical — classified as a probable C2 beacon</span>
       </div>
 
+      <h2>Architecture: agent, engine, console</h2>
+      <p>The edge agent is a single binary — Npcap on Windows, libpcap on Linux — that captures
+        live traffic on the host or segment you point it at and runs deep packet inspection
+        locally before anything leaves the machine. It extracts DNS queries, TLS Server Name
+        Indication, HTTP host headers, and protocol-level behavior, then forwards the derived
+        signals (not raw packet captures) to your gateway. There's no proprietary hardware sensor
+        and no inline network placement required — it runs alongside normal traffic.</p>
+      <p>On the gateway side, your traffic reaches your own isolated analysis engine — not a
+        shared multi-tenant pipeline. The engine builds the per-source baseline described above,
+        runs the dual-channel and quantum-probabilistic scoring described in our <a href="/approach.html" style="color:var(--ink);font-weight:600;border-bottom:1px solid var(--ink)">technical
+        approach</a>, and writes results to your own database. The console reads from that same
+        database and refreshes every 5 seconds — what you see is what the engine just decided,
+        not a cached or batched summary.</p>
+
+      <h2>Dual-channel scoring, applied to network traffic</h2>
+      <p>The physical channel tracks volume, timing, and connection-pattern characteristics —
+        how much data, how often, to how many distinct destinations. The digital channel tracks
+        content and protocol-level signals — which domains are queried, which TLS SNI values
+        appear, which HTTP hosts are requested, which protocol behaviors show up. Both channels
+        are scored against that source's own baseline independently, then fused into the
+        composite anomaly score. A source can look normal on one channel and anomalous on the
+        other — fusing both is what catches things a single-channel tool misses.</p>
+
+      <div class="example">
+        <div class="label">Why this matters in practice</div>
+        A compromised host beaconing to a C2 server often looks unremarkable on the physical
+        channel alone — the transfers are small. It's the digital channel (an unfamiliar
+        destination, evenly-spaced timing with no corresponding user-driven browsing pattern)
+        that carries the signal. Scoring only traffic volume would miss it entirely.
+      </div>
+
       <h2>Data isolation</h2>
       <p>Each paying customer is provisioned their own isolated analysis engine process and their
         own database — traffic, alerts, and investigation history for one customer are never
         mixed into another customer's data pool. This is a structural property of the deployment,
         not an access-control layer on top of shared storage.</p>
+
+    </article>
+
+    <section class="banner">
+      <div class="container">
+        <h2>Behavior first.<br><span class="dim">Signatures never.</span></h2>
+        <p>A signature list can only ever describe what's already been catalogued. A learned
+          baseline can flag what's different — the first time it happens, not the day after
+          someone writes a rule for it.</p>
+      </div>
+    </section>
+
+    <article class="container read">
+      <h2 style="margin-top:56px">Pricing</h2>
+      <p>Public pricing, no sales call. Every tier includes the same live dashboard, refreshing
+        every 5 seconds — visibility into your own traffic is never gated behind a higher plan.</p>
+      <table class="ev-table">
+        <tr><th>Plan</th><th>Price</th><th>Scope</th></tr>
+        <tr><td>Quick Look</td><td>$19 one-time</td><td>Automated, no human review. Up to 10,000 events, delivered instantly.</td></tr>
+        <tr><td>Pilot Report</td><td>$500 one-time</td><td>Trial capture window, up to 100,000 events, delivered in 5–10 business days.</td></tr>
+        <tr><td>Starter</td><td>$10/mo</td><td>1 target, continuous monitoring, up to 25,000 events per 30 days.</td></tr>
+        <tr><td>Basic</td><td>$50/mo</td><td>1 target, up to 150,000 events per 30 days.</td></tr>
+        <tr><td>Single Target</td><td>$199/mo</td><td>1 target sized for production volume, up to 500,000 events per 30 days.</td></tr>
+        <tr><td>Enterprise</td><td>Custom</td><td>Fleet-sized target count and volume, dedicated onboarding, custom SLA.</td></tr>
+      </table>
+
+      <h2>Questions we get</h2>
+      <div class="faq-mini">
+        <h3>How is this different from a signature-based IDS like Snort or Suricata?</h3>
+        <p>Those tools match packets against a maintained rule list — effective against known
+          patterns, blind to anything not yet catalogued. Raingaia Network scores behavior
+          against a learned baseline instead, at the cost of a short warmup period to learn what
+          normal looks like.</p>
+        <h3>Can I see it work before committing to a subscription?</h3>
+        <p>Yes — Starter is $10/mo with no long-term commitment, or the Pilot Report is a
+          one-time $500 trial capture with no subscription at all.</p>
+        <h3>Do I need special hardware?</h3>
+        <p>No. The edge agent is a single binary you run on the host or segment you want
+          monitored — no proprietary sensor, no rack-mounted appliance.</p>
+      </div>
 
       <h2>Who it's for</h2>
       <p>Solo developers, small teams, and lean IT operations with an internet-facing host or

@@ -85,6 +85,16 @@
     .ev-table{width:100%;border-collapse:collapse;margin:20px 0 32px;font-size:14px}
     .ev-table th,.ev-table td{border:1px solid var(--line);padding:11px 13px;text-align:left}
     .ev-table th{background:var(--bg-alt);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+    .banner{background:var(--bg-ink);color:#fff;padding:100px 0}
+    .banner h2{font-weight:800;font-size:clamp(32px,5.6vw,76px);line-height:1;letter-spacing:-.03em;text-transform:uppercase;margin:0;max-width:900px;border:none;padding:0}
+    .banner .dim{color:rgba(255,255,255,.32)}
+    .banner p{margin:28px 0 0;font-size:16px;color:rgba(255,255,255,.55);max-width:560px;line-height:1.75}
+    .signal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:24px 0 32px}
+    .signal-item{background:#fff;padding:24px 26px}
+    .signal-item h3{margin:0 0 8px;font-size:16px;font-weight:800}
+    .signal-item p{margin:0;font-size:14px;line-height:1.75;color:var(--ink-2)}
+    .faq-mini h3{margin:28px 0 8px;font-size:16.5px;font-weight:800}
+    .faq-mini p{margin:0 0 4px}
 
     .cta-band{background:var(--bg-ink);color:#fff;padding:56px;text-align:center;margin:64px 0 0}
     .cta-band h2{margin:0 0 12px;font-size:26px;font-weight:700;border:none;padding:0}
@@ -191,11 +201,66 @@
         <span class="verdict">Status: Watch — flagged for continued monitoring, not an immediate closure</span>
       </div>
 
+      <h2>Four signals, cross-checked</h2>
+      <p>Each signal type answers a different question about a structure's condition. Cross-checking
+        them is what turns four separate charts into one verdict:</p>
+      <div class="signal-grid">
+        <div class="signal-item">
+          <h3>Vibration</h3>
+          <p>Raw modal response — how the structure actually moves under load and ambient
+            excitation.</p>
+        </div>
+        <div class="signal-item">
+          <h3>Stiffness (frequency drift)</h3>
+          <p>Shifts in modal frequency over time, the signal most directly tied to the
+            published stiffness-loss methods this engine is grounded in.</p>
+        </div>
+        <div class="signal-item">
+          <h3>Strain</h3>
+          <p>Direct load-path measurement at instrumented points, cross-checked against what
+            the vibration signal implies.</p>
+        </div>
+        <div class="signal-item">
+          <h3>Tilt / settlement</h3>
+          <p>Slow, cumulative geometric change — the signal most likely to catch a foundation
+            or support issue the other three wouldn't.</p>
+        </div>
+      </div>
+
       <h2>What the console shows</h2>
       <p>Both an engineering view and a facilities-manager view are available: dashboard,
         buckling/torsion risk, critical alerts, vibration, infrastructure overview, strain gauge,
         and tilt/settlement — real telemetry from all four signal types, for technical staff and
-        integrators alike.</p>
+        integrators alike. The engine's internal views expose the raw per-signal telemetry the
+        verdict is built from, for technical staff and integrators who want to see the underlying
+        data, not just the summary a facilities manager needs.</p>
+
+    </article>
+
+    <section class="banner">
+      <div class="container">
+        <h2>One verdict.<br><span class="dim">Not four charts.</span></h2>
+        <p>Reading four signal types separately still leaves someone to reconcile them by eye.
+          Cross-checking them into a single stiffness-loss estimate and inspection priority is
+          the actual product — not the raw telemetry underneath it.</p>
+      </div>
+    </section>
+
+    <article class="container read">
+      <h2 style="margin-top:56px">Questions we get</h2>
+      <div class="faq-mini">
+        <h3>Is this a replacement for manual inspection?</h3>
+        <p>No — it's a continuous signal between manual inspections, so an issue doesn't sit
+          undetected for months between scheduled visits. A "Watch" status is a prompt to look
+          closer, not a substitute for an engineer's judgment.</p>
+        <h3>What structures is this built for?</h3>
+        <p>Bridges and similar civil structures are the primary use case shown in our live demo,
+          but the underlying four-signal approach generalizes to other structures instrumented
+          with the same sensor types.</p>
+        <h3>Can I see it against real telemetry before committing?</h3>
+        <p>Yes — request a live demo and see the console against real sensor data, including both
+          the engineering and facilities-manager views.</p>
+      </div>
 
       <h2>Who it's for</h2>
       <p>Facilities managers, structural engineers, and asset owners responsible for bridges,
