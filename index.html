@@ -64,22 +64,26 @@
     .btn-text:hover{opacity:.6}
     .mobile-toggle{display:none;background:none;border:none;font-size:22px;color:var(--ink);cursor:pointer}
 
-    /* HERO */
-    .hero{padding:96px 0 0;border-bottom:1px solid var(--line)}
-    .hero-top{display:grid;grid-template-columns:1fr 1fr;gap:64px;padding-bottom:64px;align-items:end}
-    .hero-top > div{min-width:0}
-    .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:28px;display:block}
-    h1{margin:0;font-weight:800;font-size:clamp(40px,4.6vw,62px);line-height:1.08;letter-spacing:-.025em;color:var(--ink)}
-    .hero-desc{margin:0;font-size:16.5px;line-height:1.75;color:var(--ink-2)}
-    .hero-actions{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+    /* HERO — full-bleed black banner, AKQA-style oversized type */
+    .hero{background:var(--bg-ink);color:#fff;padding:80px 0 0;overflow:hidden}
+    .hero-slogan{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:36px;display:flex;align-items:center;gap:14px}
+    .hero-slogan::before{content:"";width:36px;height:1px;background:rgba(255,255,255,.35)}
+    h1{margin:0;font-weight:800;font-size:clamp(52px,8.2vw,132px);line-height:0.94;letter-spacing:-.04em;color:#fff;text-transform:uppercase}
+    h1 em{font-style:normal;color:rgba(255,255,255,.32)}
+    .hero-desc{margin:44px 0 0;font-size:19px;line-height:1.7;color:rgba(255,255,255,.68);max-width:620px}
+    .hero-actions{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding-bottom:64px}
+    .hero .btn-primary{background:#fff;color:var(--ink);border-color:#fff}
+    .hero .btn-primary:hover{background:transparent;color:#fff}
+    .hero .btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+    .hero .btn-outline:hover{background:#fff;color:var(--ink)}
 
     /* STAT ROW */
-    .stat-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+    .stat-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.15)}
     .stat-row > .stat{min-width:0}
-    .stat-row .stat{padding:24px 4px 24px 0;border-right:1px solid var(--line)}
+    .stat-row .stat{padding:24px 4px 24px 0;border-right:1px solid rgba(255,255,255,.15)}
     .stat-row .stat:last-child{border-right:none}
-    .stat-row .stat strong{display:block;font-size:26px;font-weight:700;letter-spacing:-.02em;font-family:'IBM Plex Mono',monospace}
-    .stat-row .stat span{display:block;margin-top:6px;color:var(--ink-3);font-size:12px}
+    .stat-row .stat strong{display:block;font-size:26px;font-weight:700;letter-spacing:-.02em;font-family:'IBM Plex Mono',monospace;color:#fff}
+    .stat-row .stat span{display:block;margin-top:6px;color:rgba(255,255,255,.5);font-size:12px}
 
     /* SECTIONS */
     .section{padding:88px 0}
@@ -129,7 +133,7 @@
 
     /* RESPONSIVE */
     @media(max-width:1000px){
-      .hero-top{grid-template-columns:1fr;gap:24px}
+      
       .products-grid{grid-template-columns:1fr}
       .product-card{border-right:none;border-bottom:1px solid var(--line)}
       .product-card:last-child{border-bottom:none}
@@ -185,23 +189,17 @@
 
     <section class="hero">
       <div class="container">
-        <div class="hero-top">
-          <div>
-            <span class="eyebrow">RAINGAIA LLC — Est. 2025, St. Petersburg, FL</span>
-            <h1>One evidence engine.<br>Three domains.</h1>
-          </div>
-          <div>
-            <p class="hero-desc">
-              RAINGAIA builds monitoring software on a single shared scientific core — a
-              per-source behavioral baseline, multi-channel evidence fusion, and a tamper-evident
-              audit trail — applied to network traffic, structural vibration, and bioelectric
-              signals.
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#products">See the products</a>
-              <a class="btn btn-outline" href="/approach.html">Technical approach</a>
-            </div>
-          </div>
+        <span class="hero-slogan">RAINGAIA LLC — Est. 2025, St. Petersburg, FL</span>
+        <h1>One evidence<br>engine.<br><em>Three domains.</em></h1>
+        <p class="hero-desc">
+          RAINGAIA builds monitoring software on a single shared scientific core — a
+          per-source behavioral baseline, multi-channel evidence fusion, and a tamper-evident
+          audit trail — applied to network traffic, structural vibration, and bioelectric
+          signals.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#products">See the products</a>
+          <a class="btn btn-outline" href="/approach.html">Technical approach</a>
         </div>
         <div class="stat-row">
           <div class="stat"><strong>03</strong><span>Products, one discipline</span></div>
