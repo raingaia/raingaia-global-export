@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technical Approach — RAINGAIA</title>
+  <meta name="description" content="How RAINGAIA reasons about evidence: source-relative behavioral baselines, multi-channel signal fusion, a quantum-probabilistic decision layer (density operators, entropy, Bures distance), and a tamper-evident audit trail — the shared discipline behind Raingaia Network, Seismos, and Bio." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://raingaia.com/approach.html" />
+  <meta name="keywords" content="behavioral baseline monitoring, multi-channel evidence fusion, quantum probability decision theory, density operator, von Neumann entropy, Bures distance, tamper-evident audit trail, threshold-free anomaly detection" />
+  <meta name="author" content="RAINGAIA LLC" />
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://raingaia.com/approach.html">
+  <meta property="og:title" content="Technical Approach — RAINGAIA">
+  <meta property="og:description" content="Source-relative baselines, multi-channel fusion, a quantum-probabilistic decision layer, and a tamper-evident audit trail — the shared reasoning discipline behind every RAINGAIA product.">
+
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Technical Approach — RAINGAIA","description":"Source-relative behavioral baselines, multi-channel evidence fusion, a quantum-probabilistic decision layer, and a tamper-evident audit trail.","author":{"@type":"Organization","name":"RAINGAIA LLC"},"publisher":{"@type":"Organization","name":"RAINGAIA LLC","url":"https://raingaia.com"}}</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --paper:#f7f5f0;--white:#fff;
+      --ink:#172234;--ink-2:#2f425c;--ink-3:#60748d;--ink-4:#94a3b8;
+      --line:#dde5ee;--line-2:#ecf1f5;
+      --gold:#b68b2d;--gold-soft:#f7efe0;--gold-line:#e6d1a6;
+      --shadow:0 10px 40px rgba(23,34,52,.08);
+      --max:1240px; --read:760px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max),calc(100% - 48px));margin:0 auto}
+    .read{width:min(var(--read),calc(100% - 48px));margin:0 auto}
+
+    .topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:rgba(247,245,240,.92);border-bottom:1px solid rgba(221,229,238,.9)}
+    .topbar::before{content:"";display:block;height:3px;background:linear-gradient(90deg,#1d2a40 0%,var(--gold) 50%,#1d2a40 100%)}
+    .topbar-inner{height:80px;display:flex;align-items:center;gap:22px}
+    .brand{display:flex;align-items:center;gap:14px;flex-shrink:0}
+    .brand-mark{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(145deg,#1d2a40,#314868);color:#fff;font-family:'Playfair Display',serif;font-size:18px;font-weight:800;box-shadow:var(--shadow);border:1px solid rgba(182,139,45,.45)}
+    .brand-text strong{display:block;font-family:'Playfair Display',serif;font-size:21px;line-height:1;letter-spacing:-.03em}
+    .brand-text span{display:block;margin-top:4px;color:var(--gold);font-size:9.5px;font-family:'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
+    .nav-divider{width:1px;height:30px;background:var(--line);flex-shrink:0}
+    nav{display:flex;align-items:center;gap:28px;flex:1}
+    nav a{position:relative;padding-bottom:3px;color:var(--ink-3);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.09em;text-transform:uppercase;transition:.2s}
+    nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:.25s}
+    nav a:hover{color:var(--ink)}
+    nav a:hover::after{width:100%}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;height:44px;padding:0 20px;font-weight:600;font-size:14.5px;transition:.2s ease;border:1px solid transparent;cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif}
+    .btn-gold{background:var(--gold);color:#fff;border:none;box-shadow:0 8px 24px rgba(182,139,45,.3)}
+    .btn-gold:hover{transform:translateY(-1px)}
+    .mobile-toggle{display:none;background:none;border:none;font-size:26px;color:var(--ink);cursor:pointer}
+
+    .hero{padding:64px 0 40px}
+    .eyebrow{display:flex;align-items:center;gap:12px;color:var(--gold);font-size:11px;margin-bottom:20px;font-family:'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase}
+    .eyebrow::before{content:"";width:22px;height:1px;background:var(--gold);display:block}
+    h1{margin:0;font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,56px);line-height:1.06;letter-spacing:-.03em}
+    .hero-desc{margin:22px 0 0;font-size:18px;line-height:1.75;color:var(--ink-2)}
+
+    article{padding:12px 0 80px}
+    article h2{font-family:'Playfair Display',serif;font-size:30px;letter-spacing:-.02em;margin:52px 0 14px}
+    article h3{font-family:'DM Sans',sans-serif;font-size:17px;font-weight:700;margin:28px 0 8px}
+    article p{font-size:16px;line-height:1.85;color:var(--ink-2);margin:0 0 16px}
+    article ul{margin:0 0 20px;padding-left:22px}
+    article li{font-size:16px;line-height:1.8;color:var(--ink-2);margin-bottom:10px}
+    .clarify{background:var(--gold-soft);border:1px solid var(--gold-line);border-radius:16px;padding:20px 24px;margin:24px 0;font-size:15px;line-height:1.75;color:var(--ink)}
+    .clarify strong{color:var(--gold)}
+    .domain-table{width:100%;border-collapse:collapse;margin:24px 0 32px;font-size:14.5px}
+    .domain-table th,.domain-table td{border:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top}
+    .domain-table th{background:var(--line-2);font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+
+    .footer{padding:32px 0 52px}
+    .footer-card{background:#fff;border:1px solid var(--line);border-radius:28px;padding:32px 32px 18px;box-shadow:var(--shadow)}
+    .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+    .footer-brand h3{margin:0;font-family:'Playfair Display',serif;font-size:28px}
+    .footer-brand .sub{margin-top:8px;color:var(--ink-2);font-size:15px}
+    .footer-contact{color:var(--ink-2);font-size:14px;line-height:1.9}
+    .footer-contact strong{color:var(--ink)}
+    .footer-bottom{margin-top:22px;padding-top:16px;border-top:1px solid var(--line-2);display:flex;justify-content:space-between;gap:14px;color:var(--ink-4);font-size:10px;font-family:'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+
+    @media(max-width:920px){
+      .topbar-inner{position:relative}
+      nav{display:none;position:absolute;left:24px;right:24px;top:80px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch;gap:2px}
+      nav.open{display:flex}
+      nav a{padding:12px 10px;font-size:12px}
+      nav a::after{display:none}
+      .nav-divider{display:none}
+      .mobile-toggle{display:block}
+      .footer-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:680px){
+      h1{font-size:32px}
+      .domain-table{display:block;overflow-x:auto;white-space:nowrap}
+      .footer-bottom{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="/" class="brand">
+        <div class="brand-mark">R</div>
+        <div class="brand-text">
+          <strong>RAINGAIA</strong>
+          <span>Evidence-Grade Monitoring</span>
+        </div>
+      </a>
+      <button class="mobile-toggle" id="mobileToggle">☰</button>
+      <div class="nav-divider"></div>
+      <nav id="mainNav">
+        <a href="/#products">Products</a>
+        <a href="/approach.html">Approach</a>
+        <a href="/about.html">About</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <div class="nav-divider"></div>
+      <a class="btn btn-gold" href="/#contact">Get in touch</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">Technical Approach</div>
+        <h1>How we reason about evidence</h1>
+        <p class="hero-desc">Every RAINGAIA product monitors a different physical signal — network
+          packets, structural vibration, bioelectric activity — but all three make decisions the
+          same way. This page describes that shared reasoning discipline in depth.</p>
+      </div>
+    </section>
+
+    <article class="container read">
+
+      <h2>1. Source-relative behavioral baselines</h2>
+      <p>None of our products score anything against a single global "normal." Every monitored
+        source — a network host, a sensor point on a structure, a physiological channel — is
+        tracked individually and gets its own learned baseline. A short warmup period establishes
+        what normal actually looks like for that specific source before it is ever scored against
+        anything. A database server and a laptop have different normal network profiles; a
+        support column and a floor slab have different normal vibration profiles. Treating them as
+        interchangeable is where naive threshold-based monitoring fails.</p>
+
+      <h2>2. Multi-channel evidence fusion</h2>
+      <p>Once a baseline exists, live signal is scored across multiple independently tracked and
+        decayed channels rather than a single measurement. Each channel captures a different
+        aspect of the same underlying event — timing and volume characteristics versus
+        content/protocol-level signals in network traffic; modal frequency shift versus
+        damping-ratio change in structural vibration; amplitude versus rhythm versus
+        cross-channel coherence in bioelectric signals. The channels are fused into one composite
+        assessment, which is more robust than trusting any single signal — a real event tends to
+        show up in more than one channel; noise usually doesn't.</p>
+
+      <h2>3. A quantum-probabilistic decision layer</h2>
+      <div class="clarify">
+        <strong>Clarification up front:</strong> this is quantum <em>mathematics</em>, not quantum
+        <em>computing</em>. Every product runs as ordinary software on standard hardware. What is
+        borrowed from quantum mechanics is its formalism for reasoning under genuine uncertainty —
+        representing a current state as a vector and "measuring" it against reference states to
+        obtain a calibrated probability, rather than tripping a fixed numeric threshold.
+      </div>
+      <p>Once the domain-specific signal channels (Section 2) have produced raw evidence, a shared
+        decision engine takes over:</p>
+      <ul>
+        <li><strong>State encoding.</strong> The current evidence is encoded as a state vector in
+          a bounded-dimension, orthonormalized feature basis — analogous to a state in a Hilbert
+          space.</li>
+        <li><strong>Measurement as projection.</strong> That state is "measured" by projecting it
+          onto reference states (a known-normal regime, a known-anomalous regime) using a
+          density-operator formalism. The projection probability is the calibrated confidence that
+          the source is currently in that regime — not an arbitrary score someone has to
+          interpret.</li>
+        <li><strong>Entropy as an uncertainty measure.</strong> Shannon, Rényi, and von Neumann
+          entropy over the resulting distribution quantify how confidently classified the state
+          is. A high-entropy state is genuinely ambiguous and is handled as ambiguous, rather than
+          forced into a premature verdict.</li>
+        <li><strong>Bures distance from baseline.</strong> Deviation from a learned baseline is
+          measured with Bures trace distance — a metric built for comparing probability-like
+          states — rather than a naive Euclidean distance.</li>
+        <li><strong>Threshold-free and deterministic.</strong> No stage holds a fixed magic-number
+          threshold. A verdict is an argmax over a source-relative probability distribution built
+          from that source's own history, and the same input always produces the same output — a
+          requirement for the result to be auditable at all.</li>
+      </ul>
+
+      <h2>4. Tamper-evident audit trail</h2>
+      <p>Every decision is written to a cryptographically chained audit log, each entry linked to
+        the one before it. A retroactively altered decision record breaks the chain. This matters
+        because the output of a monitoring system is often evidence someone else has to trust —
+        an insurer, a regulator, a downstream investigator — not just a number on a dashboard the
+        original operator already believed.</p>
+
+      <h2>5. One discipline, three domains</h2>
+      <p>The table below is intentionally at the level of what each domain's raw signal actually
+        is — the shared reasoning layers above (Sections 1–4) operate on whatever that signal
+        becomes once it reaches them.</p>
+      <table class="domain-table">
+        <tr><th>Product</th><th>Raw signal</th><th>What a "source" is</th><th>What a verdict looks like</th></tr>
+        <tr><td>Raingaia Network</td><td>Live network packets (DPI-derived: DNS, TLS SNI, HTTP host, protocol behavior)</td><td>A host, endpoint, or network segment</td><td>A composite anomaly score plus a named event classification (e.g. probable C2 beacon)</td></tr>
+        <tr><td>Raingaia Seismos</td><td>Structural vibration sensor data</td><td>A sensor point on a monitored structure</td><td>A stiffness-loss estimate, a damage-equivalent volume, and an inspection priority</td></tr>
+        <tr><td>Raingaia Bio</td><td>Bioelectric signals across ten physiological domains</td><td>A physiological channel</td><td>A confidence-gated evidence assessment with a tamper-evident record</td></tr>
+      </table>
+
+      <p>Explore what each product actually does: <a href="https://network.raingaia.com" target="_blank" rel="noopener" style="color:var(--gold);font-weight:600">Raingaia Network</a>, <a href="https://seismos.raingaia.com" target="_blank" rel="noopener" style="color:var(--gold);font-weight:600">Raingaia Seismos</a>, or <a href="https://bio.raingaia.com" target="_blank" rel="noopener" style="color:var(--gold);font-weight:600">Raingaia Bio</a>.</p>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-card">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <h3>RAINGAIA</h3>
+            <div class="sub">One evidence engine. Three domains.</div>
+          </div>
+          <div class="footer-contact">
+            <div><strong>RAINGAIA LLC</strong></div>
+            <div>7901 4th St N Ste 300, St. Petersburg, FL 33702, US</div>
+            <div><a href="mailto:raingaia@outlook.com">raingaia@outlook.com</a></div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 RAINGAIA LLC. All rights reserved.</span>
+          <span><a href="/">Home</a> · <a href="/about.html">About</a></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleBtn = document.getElementById('mobileToggle');
+      const mainNav = document.getElementById('mainNav');
+      if (toggleBtn && mainNav) {
+        toggleBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          mainNav.classList.toggle('open');
+          toggleBtn.textContent = mainNav.classList.contains('open') ? '✕' : '☰';
+        });
+        document.addEventListener('click', function() { mainNav.classList.remove('open'); toggleBtn.textContent = '☰'; });
+      }
+    });
+  </script>
+</body>
+</html>
