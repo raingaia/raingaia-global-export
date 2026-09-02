@@ -62,14 +62,22 @@
     .contact-col{background:#fff;padding:36px 32px}
     .contact-col h2{margin:0 0 16px;font-size:20px;font-weight:800;letter-spacing:-.01em}
     .contact-col p{margin:0 0 16px;font-size:15px;line-height:1.8;color:var(--ink-2)}
-    .contact-col a.big{display:inline-block;font-size:16px;font-weight:700;color:var(--ink);border-bottom:2px solid var(--ink);margin-bottom:4px}
     .reason-list{display:flex;flex-direction:column;gap:14px;margin-top:20px}
     .reason{border-left:2px solid var(--line);padding-left:14px}
     .reason strong{display:block;font-size:14px;margin-bottom:3px}
     .reason span{font-size:13.5px;color:var(--ink-3)}
     .reason a{color:var(--ink);font-weight:600;border-bottom:1px solid var(--ink)}
-    .addr-block{font-size:14.5px;line-height:1.9;color:var(--ink-2)}
+    .addr-block{font-size:14.5px;line-height:1.9;color:var(--ink-2);margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
     .addr-block strong{color:var(--ink)}
+
+    .contact-form{display:flex;flex-direction:column;gap:16px}
+    .contact-form label{display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+    .contact-form input,.contact-form textarea{width:100%;border:1px solid var(--line);border-radius:2px;padding:11px 13px;font-family:'DM Sans',sans-serif;font-size:14.5px;color:var(--ink);background:#fff}
+    .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--ink)}
+    .contact-form textarea{resize:vertical;min-height:110px}
+    .contact-form button{align-self:flex-start;border:none;cursor:pointer}
+    .form-note{font-size:12.5px;color:var(--ink-4);margin:0}
+    .honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
     .footer{padding:56px 0 32px;border-top:1px solid var(--line)}
     .footer-bottom{display:flex;justify-content:space-between;gap:14px;color:var(--ink-4);font-size:11.5px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace}
@@ -109,7 +117,7 @@
         <a href="/about.html">About</a>
         <a href="/faq.html">FAQ</a>
       </nav>
-      <a class="btn btn-primary" href="mailto:raingaia@outlook.com">Email us</a>
+      <a class="btn btn-primary" href="#contact-form">Contact us</a>
     </div>
   </header>
 
@@ -126,10 +134,26 @@
     <section class="section">
       <div class="container">
         <div class="contact-grid">
-          <div class="contact-col">
-            <h2>RAINGAIA LLC</h2>
-            <a class="big" href="mailto:raingaia@outlook.com">raingaia@outlook.com</a>
+          <div class="contact-col" id="contact-form">
+            <h2>Send us a message</h2>
             <p>We read and answer these ourselves — no ticketing system, no support queue.</p>
+            <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <div>
+                <label for="cf-name">Name</label>
+                <input id="cf-name" type="text" name="name" required>
+              </div>
+              <div>
+                <label for="cf-email">Email</label>
+                <input id="cf-email" type="email" name="email" required>
+              </div>
+              <div>
+                <label for="cf-message">Message</label>
+                <textarea id="cf-message" name="message" required></textarea>
+              </div>
+              <input type="text" name="_gotcha" class="honeypot" tabindex="-1" autocomplete="off">
+              <input type="hidden" name="_subject" value="New message from raingaia.com">
+              <button type="submit" class="btn btn-primary">Send message</button>
+            </form>
             <div class="addr-block">
               <strong>RAINGAIA LLC</strong><br>
               7901 4th St N Ste 300<br>
