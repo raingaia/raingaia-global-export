@@ -313,7 +313,7 @@
         <tr><td>Single Target</td><td>$279/mo</td><td>1 target sized for production volume, up to 500,000 events per 30 days.</td></tr>
         <tr><td>Enterprise</td><td>Custom</td><td>Fleet-sized target count and volume, dedicated onboarding, custom SLA.</td></tr>
       </table>
-      <p style="font-size:13.5px;color:var(--ink-3)">Starter's $10/mo is launch pricing, available for a limited time — the list price rises after that, but early customers keep $10/mo for as long as they stay subscribed.</p>
+      <p style="font-size:13.5px;color:var(--ink-3)">Starter's $10/mo is launch pricing, available for a limited time — the list price rises after that, but early customers keep $10/mo for as long as they stay subscribed. <strong id="launch-countdown" style="color:#b91c1c"></strong></p>
 
       <h2>Questions we get</h2>
       <div class="faq-mini">
@@ -365,6 +365,24 @@
           toggleBtn.textContent = mainNav.classList.contains('open') ? '✕' : '☰';
         });
         document.addEventListener('click', function() { mainNav.classList.remove('open'); toggleBtn.textContent = '☰'; });
+      }
+
+      // Same fixed deadline as the dashboard's launch countdown
+      // (dashboard/src/components/public/launch-countdown.tsx) -- change
+      // both together if the window is ever extended.
+      var launchDeadline = new Date('2026-10-02T23:59:59Z');
+      var countdownEl = document.getElementById('launch-countdown');
+      if (countdownEl) {
+        function renderCountdown() {
+          var msLeft = launchDeadline.getTime() - Date.now();
+          if (msLeft <= 0) { countdownEl.textContent = ''; return; }
+          var totalMinutes = Math.floor(msLeft / 60000);
+          var days = Math.floor(totalMinutes / (60 * 24));
+          var hours = Math.floor((totalMinutes % (60 * 24)) / 60);
+          countdownEl.textContent = '🔥 ' + days + 'd ' + hours + 'h left at $10/mo';
+        }
+        renderCountdown();
+        setInterval(renderCountdown, 60000);
       }
     });
   </script>
