@@ -65,6 +65,7 @@
     .product-logo-lg{width:56px;height:56px;border-radius:14px}
     .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
     h1{margin:0 0 20px;font-weight:800;font-size:clamp(40px,6.2vw,92px);line-height:0.98;letter-spacing:-.03em;max-width:960px;color:#fff;text-transform:uppercase}
+    .hero h1 .dim{color:rgba(255,255,255,.35)}
     .hero-desc{margin:0 0 28px;font-size:18px;line-height:1.75;color:rgba(255,255,255,.68);max-width:680px}
     .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:48px}
     .stat-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.15)}
@@ -159,12 +160,14 @@
           <img class="product-logo-lg" src="logo-network.png" alt="Raingaia Network logo" width="56" height="56">
           <span class="eyebrow">Network Security</span>
         </div>
-        <h1>Raingaia Network: behavioral network anomaly detection</h1>
-        <p class="hero-desc">A lightweight edge agent, a per-customer isolated analysis engine,
-          and a live console — Raingaia Network learns what normal looks like for each source on
-          your network, then scores live traffic against that baseline to produce a composite
-          risk score, a named event classification, and a prioritized investigation queue.
-          No signature list to maintain, no appliance to rack.</p>
+        <h1>Behavior is evidence.<br><span class="dim">Not a signature list.</span></h1>
+        <p class="hero-desc">A lightweight edge agent learns what normal looks like for every
+          source on your network, then scores live traffic against that baseline — fusing a
+          physical and a digital signal channel into one composite risk score. Every incident
+          that crosses the threshold gets a full evidence report — executive summary, technical
+          evidence, source attribution, recommended action — generated automatically and pushed
+          to your console the instant it happens. No analyst has to write it up first, no
+          signature list to maintain.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://network.raingaia.com" target="_blank" rel="noopener">Visit network.raingaia.com</a>
           <a class="btn btn-outline" href="/approach.html">How the engine works</a>
